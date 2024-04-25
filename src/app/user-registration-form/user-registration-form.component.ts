@@ -3,10 +3,9 @@ import { Component, OnInit, Input } from '@angular/core';
 // Import to close the dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
 
-// Import to bring in the API call created in 6.2
+// Import to bring in the API call 
 import { FetchApiDataService  } from '../fetch-api-data.service';
 
-// Import to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
@@ -31,16 +30,16 @@ ngOnInit(): void {
 
 // This is the function responsible for sending the form inputs to the backend
 registerUser(): void {
-    this.fetchApiData.userRegistration(this.userData).subscribe((response) => {
-  // Logic for a successful user registration goes here! (To be implemented)   
+    this.fetchApiData.userRegistration(this.userData).subscribe((result) => {
+  // Logic for a successful user registration goes here!    
     this.dialogRef.close(); // This will close the modal on success!
-    console.log(response);
+    console.log(result);
     this.snackBar.open('User registration successful', 'OK', {
       duration: 2000
      });
-    }, (response) => {
-      console.log(response);
-      this.snackBar.open(response, 'OK', {
+    }, (result) => {
+      console.log(result);
+      this.snackBar.open(result, 'OK', {
         duration: 2000
       });
     });
