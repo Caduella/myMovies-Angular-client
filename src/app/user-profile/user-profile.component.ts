@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject  } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DirectorInfoComponent } from '../director-info/director-info.component';
 import { MovieSynopsisComponent } from '../movie-synopsis/movie-synopsis.component';
 import { GenreInfoComponent } from '../genre-info/genre-info.component';
+import { UserRegistrationFormComponent } from '../user-registration-form/user-registration-form.component';
 
 // Import to bring in the API call created in 6.2
 import { FetchApiDataService  } from '../fetch-api-data.service';
@@ -52,18 +53,9 @@ export class UserProfileComponent implements OnInit{
   }
 
   updateUser(): void {
-    this.fetchApiData.editUser(this.userData).subscribe((result) => {
-      console.log('User update success:', result);
-      localStorage.setItem('user', JSON.stringify(result));
-      this.snackBar.open('User update successful', 'OK', {
-        duration: 2000
-      });
-    }, (error) => {
-      console.error('Error updating user:', error);
-      this.snackBar.open('Failed to update user', 'OK', {
-        duration: 2000
-      });
-    });
+     // Used registartionComponent with another shared variables
+     this.dialog.open(UserRegistrationFormComponent, { width: '400px', height: '400px', data: { title: 'UPDATE USER', button: 'Update', function: 'updateUser()' } });
+     this.fetchApiData.currentUser.subscribe(userData => this.user = userData);
   }
 
   

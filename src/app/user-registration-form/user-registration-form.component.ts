@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input  } from '@angular/core';
 
 // Import to close the dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
@@ -16,16 +16,23 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserRegistrationFormComponent implements OnInit {
 
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
+  @Input() userData : any= { Username: '', Password: '', Email: '', Birthday: '' };
 
+  token : any = localStorage.getItem('token');
 
 constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
     public snackBar: MatSnackBar) { }
+  
 
 // this method is called once the component has received all its input from the calling component
 ngOnInit(): void {
+  if( this.token !== null ){
+    this.userData = JSON.parse(localStorage.getItem('user') || '');
+    this.userData.Password = '';
+    console.log(this.userData);
+  }
 }
 
 // This is the function responsible for sending the form inputs to the backend
@@ -45,4 +52,16 @@ registerUser(): void {
     });
   }
 
+  updateUser(): void {
+    this.fetchApiData.updateUser(this.userData).subscribe((response) => {
+      console.log(response);
+     localStorage.setItem('user', JSON.stringify(response));
+     this.dialogRef.close();
+     this.snackBar.open('User updated successfully!!', 'OK', {duration: 2000});
+    }, (response) => {
+     console.log(response);
+     this.snackBar.open(response, 'OK', {  duration: 2000});
+    });
   }
+
+}

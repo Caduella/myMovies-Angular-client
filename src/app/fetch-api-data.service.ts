@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, BehaviorSubject  } from 'rxjs';
 
 
 //Declaring the api url that will provide data for the client app
@@ -12,6 +12,14 @@ const apiUrl = 'https://myquickmovieapi.onrender.com/';
 })
 
 export class FetchApiDataService {
+
+  private userData = new BehaviorSubject<Object>({ Username: '', Password: '', Email: '', Birthday: ''});
+  currentUser = this.userData.asObservable();
+
+  private movies = new BehaviorSubject<Object>({});
+  moviesList = this.movies.asObservable(); 
+
+
   // Inject the HttpClient module to the constructor params
   // This will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient) {
@@ -121,11 +129,10 @@ export class FetchApiDataService {
   }
 
   // Making the api call for the Edit User endpoint
-  editUser(userDetails: any): Observable<any> {
-    console.log(userDetails);
+  updateUser(updatedUser: any): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
-    return this.http.put(apiUrl + 'users/' + userDetails.Username, userDetails, {headers: new HttpHeaders(
+    return this.http.put(apiUrl + 'users/' + user.Username, updatedUser, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(

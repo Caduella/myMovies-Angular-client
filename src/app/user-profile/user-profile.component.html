@@ -14,61 +14,18 @@
             <mat-card-title>Update Profile</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <form>
-                <label>Username:</label>
-                <mat-form-field class="form-inputs">
-                    <input
-                        matInput
-                        [(ngModel)]="userData.Username"
-                        placeholder="Username"
-                        type="text"
-                        name="Username"
-                        required
-                    >
-                </mat-form-field>
-                <label>Email:</label>
-                <mat-form-field class="form-inputs">
-                    <input
-                        matInput
-                        [(ngModel)]="userData.Email"
-                        placeholder="Email"
-                        type="email"
-                        name="Email"
-                        required
-                    >
-                </mat-form-field>
-                <label>Birthday:</label>
-                <mat-form-field class="form-inputs">
-                    <input
-                        matInput
-                        [(ngModel)]="userData.Birthday"
-                        placeholder="Birthday"
-                        type="date"
-                        name="Birthday"
-                        required
-                    >
-                </mat-form-field>
-            </form>
-            <mat-card-actions class="actions">
-                <button
-                    mat-raised-button
-                    class="button-profile"
-                    color="warn"
-                    (click)="deleteUser()"
-                >
-                    Delete
-                </button>
-                <button
-                    mat-raised-button
-                    class="button-profile"
-                    color="primary"
-                    (click)="updateUser()"
-                    type="submit"
-                >
-                    Update
-                </button>
-            </mat-card-actions>
+            Username: {{user.Username}} <br/>
+            Email: {{user.Email}} <br/>
+            Birthday: {{user.Birth | date:'longDate'}}<br/>
         </mat-card-content>
+        <mat-card-actions>           
+            <button mat-raised-button (click)="updateUser()" color="primary" style="margin: 20px;">
+                Update User
+            </button>
+            <button mat-raised-button color="primary" (click)="deleteUser()" style="margin: 20px;">
+                Delete Account
+            </button>
+        </mat-card-actions>
     </mat-card>
     <div class="fav-movies-cards">
         <div class="profile-card-header">
@@ -110,8 +67,7 @@
                     </mat-card-actions>
                 </div>
                 <mat-card-header class="card-header-fav">
-                    <mat-card-title class="card-title-fav">{{movie.Title}}</mat-card-title>
-                    <mat-card-subtitle>Directed by: </mat-card-subtitle>
+                    <mat-card-title class="card-title-fav">{{movie.Title}}</mat-card-title>                  
                 </mat-card-header>
             </mat-card>
              <!-- Favorite Movies Cards End -->
