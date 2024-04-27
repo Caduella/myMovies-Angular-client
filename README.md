@@ -21,6 +21,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - The project contains technical documentation using JSDoc
 - The project is hosted on GitHub Pages
 
+## Live App: https://caduella.github.io/myMovies-Angular-client/
 
 ## Development server
 
