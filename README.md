@@ -1,10 +1,16 @@
 # MyMoviesAngularClient
 
-Using Angular, this is SPA on the client side, based on its existing server-side code (REST API and database), with supporting documentation.
+## Description
+Using Angular, this is a SPA on the client side, based on its existing server-side code (REST API and database), with supporting documentation.
 
 This single-page, responsive application provides users with access to informaiton about different movies, directors, and genres.  Users can sign up, date their informaiton, and create a list of their favorite movies.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
+
+## Screenshot of the App
+![App all movies view](myMovie-Angular-view.png)
+
+## Live App: https://caduella.github.io/myMovies-Angular-client/
 
 ## Key features
 - Display a welcome view where users will be able to either log in or sign up for an account.
@@ -21,7 +27,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - The project contains technical documentation using JSDoc
 - The project is hosted on GitHub Pages
 
-## Live App: https://caduella.github.io/myMovies-Angular-client/
 
 ## Development server
 
